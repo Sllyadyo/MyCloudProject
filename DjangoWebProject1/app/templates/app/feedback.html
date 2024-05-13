@@ -1,0 +1,93 @@
+{% extends "app/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+  {% if form != None %}
+
+<br>
+<h2>Оставьте свой отзыв</h2>
+<br>
+<div>
+    <script>
+        $(document).ready(function () {
+            $('#id_submit').css('background-color', 'green');
+
+            $('#id_submit').hover(
+                function () {
+                    $(this).css('background-color', '#C3B1E1');
+                },
+                function () {
+                    $(this).css('background-color', 'green');
+                }
+            );
+
+            $('body').css('background-color', '#CCCCFF');
+            $('h2').css('color', '#CF9FFF');
+            $('label').css('color', '#CF9FFF');
+
+            $('input[type="text"], textarea').mouseover(function () {
+                $(this).css('background-color', '#C3B1E1');
+            }).mouseout(function () {
+                $(this).css('background-color', 'white');
+            });
+
+            $('input[type="text"], input[type="email"], textarea').mouseover(function () {
+                $(this).css('background-color', '#C3B1E1');
+            }).mouseout(function () {
+                $(this).css('background-color', 'white');
+            });
+        });
+    </script>
+</div>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}:</label>
+        {{ form.name }}<br><br>
+        <label for="{{ form.city.id_for_label }}">{{ form.city.label}}:</label>
+        {{ form.city }}<br>
+        <label for="{{ form.gender.id_for_label }}">{{ form.gender.label }}:</label>
+        {{ form.gender }}
+        <label for="{{ form.job.id_for_label }}">{{ form.job.label }}:</label><br>
+        {{ form.job }}<br><br>
+        <label for="{{ form.internet.id_for_label }}">{{ form.internet.label }}:</label><br>
+        {{ form.internet }}<br><br>
+        <label for="{{ form.notice.id_for_label }}">{{ form.notice.label }}:</label>
+        {{ form.notice }}<br><br>
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}:</label>
+        {{ form.email }}<br><br>
+        <label for="{{ form.message.id_for_label }}">{{ form.message.label }}:</label><br>
+        {{ form.message }}<br><br>
+        <input type="submit" value="Отправить" id="id_submit">
+    </form>
+</div>
+{% else %}
+<div>
+    <script>
+        $(document).ready(function () {
+
+            $('body').css('background-color', '#CCCCFF');
+            $('span').css('color', '#5D3FD3 ');
+            $('li').css('color', '#B26EBB');
+            $('h2').css('color', '#5D3FD3 ');
+            $('h3').css('color', '#5D3FD3 ');
+        });
+    </script>
+</div>
+<br>
+<h2>Благодарим за предоставленную информацию!</h2>
+<h3>Вы сообщили о себе следующее:</h3>
+<ul id="list">
+    <li><span>Имя: </span>{{ data.name }}</li>
+    <li><span>Город: </span>{{ data.city }}</li>
+    <li><span>Пол: </span>{{ data.gender }}</li>
+    <li><span>Работа: </span>{{ data.job }}</li>
+    <li><span>В интернете: </span>{{ data.internet }}</li>
+    <li><span>Получать новости с сайта на e-mail: </span>{{ data.notice }}</li>
+    <li><span>Ваш e-mail: </span>{{ data.email }}</li>
+    <li><span>Информация о себе: </span>{{ data.message }}</li>
+</ul>
+
+{% endif %}
+{% endblock %}

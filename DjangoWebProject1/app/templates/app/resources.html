@@ -1,0 +1,18 @@
+{% extends "app/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1>Полезные ссылки на изучение других облачных платформ</h1>
+<ul>
+    {% for resource in resources %}
+    <li>
+        <a href="{{ resource.url }}" target="_blank">
+            <img src="{% static 'app/content/'|add:resource.logo %}" alt="{{ resource.name }}" width="80" height="80">
+            {{ resource.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

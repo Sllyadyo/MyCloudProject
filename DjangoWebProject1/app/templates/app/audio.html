@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<hr />
+<div>
+    <h2>Название композиции: Mission to Mars</h2>
+    <audio controls="controls">
+        <source src="/media/mission.mp3" type=audio/mp3  controls="controls">
+        <!--<source src="/media/Mars.wav" type="audio/wav" controls="controls">-->
+    </audio>
+</div>
+<hr />
+<div>
+    <h2>Название композиции: World War Outerspace</h2>
+    <audio controls="controls">
+        <source src="/media/world.mp3" type=audio/mp3 controls="controls">
+        <!--<source src="/media/outer.wav" type="audio/wav" controls="controls">-->
+    </audio>
+</div>
+{% endblock %} 
